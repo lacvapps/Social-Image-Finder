@@ -1,0 +1,44 @@
+<md-dialog flex="75" aria-label="Schedule Facebook Post" ng-cloak onload="SetDate();">
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Schedule Facebook Post</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <i class="fa fa-times"></i>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <h2>Facebook Post</h2>
+        <div style="display: inline-block;" layout="row">
+            <md-input-container style="float: left;">
+              <md-select aria-label="PostOption"  ng-model="postType">
+                <md-option ng-repeat="key in postOptions">
+                  {{key}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+            <p style="float: left; font-size: 1.3em;" ng-show="isScheduledPost">Date: <input type="Text" id="scheduleTimePicker" maxlength="25" size="25" onclick="javascript:NewCssCal ('scheduleTimePicker','MMddyyyy','dropdown',true,'12')"/> </p>
+          </div>
+        <img layout="row" style="margin: auto; max-width: 400px;" src="{{selectedImage}}"/>
+        <!-- <p ng-show="isScheduledPost">Date: <input type="date" id="datepicker"></p> -->
+        <md-input-container class="md-block">
+          <label>Post Message</label>
+          <textarea ng-model="postMessage" rows="5" md-select-on-focus></textarea>
+        </md-input-container>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button ng-click="cancel()">
+       Cancel
+      </md-button>
+      <span flex></span>
+      <!-- <md-datepicker ng-show="isScheduledPost"  ng-model="myDate" md-placeholder="Enter date"></md-datepicker> -->
+      <md-button ng-click="answer()" style="margin-right:20px;">
+        {{postType}}
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

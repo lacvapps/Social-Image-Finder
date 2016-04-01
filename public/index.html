@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>My App</title>
+    <link rel="stylesheet" href="css/font-awesome.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.0.0/angular-material.min.css">
+    <script src="/js/main.js"></script>
+</head>
+<body>
+  <div ng-controller="MainController" flex>
+   <h1 style="text-align: center; padding-bottom: 20px">Page Poster</h1>
+   <md-button class="md-primary md-raised" ng-click="login()">Login</md-button>
+    <div layout="row" layout-wrap layout-align="center" flex="100">
+    	<div layout="column" class="searchOptionsBox" flex="50">
+    		<div layout="row" flex="100">
+		    	<md-input-container class="md-block inputBlock" flex>
+		        <label>Size</label>
+		        <md-select ng-model="size">
+		          <md-option ng-repeat="(key, value) in sizes">
+		            {{key}}
+		          </md-option>
+		        </md-select>
+		      </md-input-container>
+		      <md-input-container class="md-block inputBlock" flex>
+		        <label>Image Type</label>
+		        <md-select ng-model="imgType">
+		          <md-option ng-repeat="(key, value) in imgTypes">
+		            {{key}}
+		          </md-option>
+		        </md-select>
+		      </md-input-container>
+	      </div>
+	      <md-input-container class="md-block inputBlock">
+			      <label>Search</label>
+			      <input name="searchBox" required ng-model="searchContents">
+			      <span ng-show="searchbox.$invalid">Search is required.</span>
+				  </md-input-container>
+				  <md-button class="md-primary md-raised" ng-click="search()">Search</md-button>
+	    </div>
+		</div>
+
+			<div ng-show="loadingResults" layout="row" layout-sm="column" layout-align="space-around">
+			  <md-progress-circular md-mode="indeterminate"></md-progress-circular>
+			</div>
+			<div layout='column' layout-wrap layout-padding>
+			<md-grid-list
+			    md-cols-xs="1" md-cols-sm="2" md-cols-md="4" md-cols-gt-md="4"
+			    md-row-height-gt-md="1:1" md-row-height="2:2"
+			    md-gutter="12px" md-gutter-gt-sm="8px" >
+			  <md-grid-tile ng-repeat="imagePath in imgArray track by $index" class="gray" md-rowspan="1" md-colspan="1" md-colspan-sm="1">
+			      <img height='300' width='300' ng-src="{{imagePath}}" />
+			    <md-grid-tile-footer layout-row>
+			      <md-button flex ng-click="showDialog($index)">Post</md-button>
+			      <md-button flex>Delete</md-button>
+			    </md-grid-tile-footer>
+			  </md-grid-tile>
+			</md-grid-list>
+		 
+		 <div layout='row' layout-wrap><md-button flex="100" ng-show="showLoadMore" ng-click="loadMore()">Load More</md-button></div>
+	  </div>
+  </div>
+</body>
+<script src="https://connect.facebook.net/en_US/sdk.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.2.min.js" integrity="sha256-lZFHibXzMHo3GGeehn1hudTAP3Sc0uKXBXAzHX1sjtk="   crossorigin="anonymous"></script>
+<script src="js/datetimepicker.js"></script>
+</html>

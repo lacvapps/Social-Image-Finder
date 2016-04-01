@@ -1,0 +1,11 @@
+.searchOptionsBox {
+	background-color: #f7f7f7;
+	box-shadow: 5px 10px 40px #999;
+	padding: 10px 10px 0px 10px;
+}
+
+md-grid-tile-footer figcaption {
+  margin: 0;
+  width: 100%;
+  text-align: center; 
+}
